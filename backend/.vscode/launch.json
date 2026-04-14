@@ -1,0 +1,75 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Antigravity API",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": "Debug Antigravity Migration",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/migrate_antigravity.py",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Antigravity Tests",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/test_antigravity.py",
+            "args": [
+                "${input:testCvPath}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Antigravity Monitor",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/monitor_antigravity.py",
+            "args": [
+                "--report-file",
+                "debug_report.json"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Antigravity Cleanup",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/cleanup_antigravity.py",
+            "args": [
+                "--dry-run"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "testCvPath",
+            "description": "Path to test CV file",
+            "default": "path/to/test/cv.pdf",
+            "type": "promptString"
+        }
+    ]
+}
