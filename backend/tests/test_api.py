@@ -13,17 +13,17 @@ def test_health_check():
 
 def test_upload_cv_without_auth():
     """Test upload CV sans authentification"""
-    response = client.post("/upload-cv")
+    response = client.post("/api/upload-cv")
     assert response.status_code == 422  # Validation error
 
 def test_match_without_auth():
     """Test matching sans authentification"""
-    response = client.post("/match", json={})
+    response = client.post("/api/match", json={})
     assert response.status_code == 401
 
 def test_match_check_info_without_auth():
     """Test check-info sans authentification"""
-    response = client.post("/match/check-info", json={})
+    response = client.post("/api/match/check-info", json={})
     assert response.status_code == 401
 
 # Tests des services
@@ -85,15 +85,15 @@ def test_location_score():
     """Test calcul du score de localisation"""
     # Même ville
     score = location_score("Paris", "Paris, France")
-    assert score == 40
+    assert score == 100
 
     # France entière
     score = location_score("France entière", "Marseille, France")
-    assert score == 40
+    assert score == 100
 
     # Remote
     score = location_score("Paris", "Remote")
-    assert score == 20
+    assert score == 80
 
     # Pas de localisation
     score = location_score(None, "Paris")

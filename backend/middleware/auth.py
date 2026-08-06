@@ -3,7 +3,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from typing import Optional
 import os
 import logging
-from supabase import create_client
+from supabase import create_client, Client
 
 security = HTTPBearer()
 
